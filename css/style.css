@@ -1,0 +1,30 @@
+#wrapper{
+	width: 700px;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	
+}
+#myCanvas{
+	float: left;
+	border:1px solid black;
+}
+#toolbar{
+	float: left;
+	width: 55px;
+}
+#colorSelect{
+	clear: both;
+}
+.hidden {   
+	left: -10000px;   
+	position: absolute;   
+	top: -1000px; 
+} 
+.spacer{
+	margin: 4px;
+}
+
+.blueBorder{
+	box-shadow: 0px 0px 10px 1px rgba(88,167,227,1);
+}
