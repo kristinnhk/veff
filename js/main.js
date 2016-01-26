@@ -6,8 +6,10 @@ $(document).ready(function(){
 	var starty = 0;
 	var currx = 0;
 	var curry = 0;
-
 	var isDrawing = false;
+	var drawings = [];
+	var undo = [];
+
 
 	$("#myCanvas").mousedown(function(e){
 		console.log("its alive");
@@ -21,7 +23,7 @@ $(document).ready(function(){
 
 		isDrawing = true;
 		
-		console.log("X:" + x + " , Y: " + y);
+		console.log("X:" + startx + " , Y: " + starty);
 	});
 
 	$("#myCanvas").mousemove(function(e){
@@ -65,7 +67,20 @@ function set_radio($inputId){
 	console.log($inputId);
 	document.getElementById("redSelect").classList.remove('blueBorder');
 	document.getElementById("blueSelect").classList.remove('blueBorder');
-	var selected = $("input[type='radio'][name='colorRadio']:checked");
-	console.log(selected.val());
-	document.getElementById(selected.val()).classList.add('blueBorder');
+	var selectedColor = $("input[type='radio'][name='colorRadio']:checked");
+	console.log(selectedColor.val());
+	document.getElementById(selectedColor.val()).classList.add('blueBorder');
 }	
+
+function set_tool($inputId){
+	$("input#" + $inputId).click();
+	console.log($inputId);
+	document.getElementById("brushSelect").classList.remove('blueBorder');
+	document.getElementById("circleSelect").classList.remove('blueBorder');
+	document.getElementById("squareSelect").classList.remove('blueBorder');
+	document.getElementById("lineSelect").classList.remove('blueBorder');
+	document.getElementById("textSelect").classList.remove('blueBorder');
+	var selectedTool = $("input[type='radio'][name='toolRadio']:checked");
+	console.log(selectedTool.val());
+	document.getElementById(selectedTool.val()).classList.add('blueBorder');
+}
