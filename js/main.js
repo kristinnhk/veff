@@ -13,26 +13,29 @@ $(document).ready(function(){
 
 	$("#myCanvas").mousedown(function(e){
 		console.log("its alive");
-		//startx = e.pageX - this.offsetLeft;
-		//starty = e.pageY - this.offsetTop;
-		
-		startx = currx;
+		isDrawing = true;
+		startx = e.pageX - this.offsetLeft;
+		starty = e.pageY - this.offsetTop;
+		var pen = new Pen(startx, starty);
+		//pen.draw(context);
+
+		/*startx = currx;
         starty = curry;
         currx = e.pageX - canvas.offsetLeft;
-        curry = e.pageY - canvas.offsetTop;
+        curry = e.pageY - canvas.offsetTop;*/
 
-		isDrawing = true;
-		
-		console.log("X:" + startx + " , Y: " + starty);
-	});
 
-	$("#myCanvas").mousemove(function(e){
-		if(isDrawing === true){
+        console.log("X:" + startx + " , Y: " + starty);
+
+        $("#myCanvas").mousemove(function(ev){
+        	if(isDrawing === true){
 			//var x = e.pageX - this.offsetLeft;
 			//var y = e.pageY - this.offsetTop;
-
+			pen.drawing(canvas,ev);
+			pen.draw(context, ev);
 			//draw virknin
-			startx = currx;
+
+			/*startx = currx;
             starty = curry;
             currx = e.pageX - canvas.offsetLeft;
         	curry = e.pageY - canvas.offsetTop;
@@ -43,7 +46,7 @@ $(document).ready(function(){
 		    context.strokeStyle = "black";
 		    context.lineWidth = 2;
 		    context.stroke();
-		    context.closePath();
+		    context.closePath();*/
 
 			/*lineTo virknin
 			context.clearRect(0,0,550,550);
@@ -51,13 +54,17 @@ $(document).ready(function(){
 			context.moveTo(startx,starty);
 			context.lineTo(x,y);
 			context.stroke();*/
-		}
 
-	});
+			}
+		});
 
-	$("#myCanvas").mouseup(function(e){
-		isDrawing = false;
-	});
+		$("#myCanvas").mouseup(function(e){
+			isDrawing = false;
+		});
+
+
+    });
+
 
 });
 
