@@ -84,3 +84,11 @@ function set_tool($inputId){
 	console.log(selectedTool.val());
 	document.getElementById(selectedTool.val()).classList.add('blueBorder');
 }
+
+function undo () {
+	console.log("undoing shit");
+}
+
+function redo () {
+	console.log("redoing shit");
+}
