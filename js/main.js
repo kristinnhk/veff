@@ -133,15 +133,15 @@ function getColor(){
 		selectedVal = selected.val();
 		if(selectedVal == "blackSelect"){
 			console.log(selectedVal);
-			//return a new brush()
+			//return a new color()
 		}
 		else if(selectedVal == "blueSelect"){
 			console.log(selectedVal);
-			//return a new brush()
+			//return a new color()
 		}
 		else if(selectedVal == "redSelect"){
 			console.log(selectedVal);
-			//return a new circle()
+			//return a new color()
 		}
 	}
 	else{
