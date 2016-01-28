@@ -37,11 +37,14 @@
                 <img id="redoSelect" class="spacer" src="images/redo.png" alt="wtf no render" style="width:50px;height:50px;"/></a>
             </div>
             <div id="colorSelect">
+                <input type="radio" value="blackSelect" name="colorRadio" id="colorBlack" class="hidden" checked="checked"/>
+                <a href="javascript:set_color('colorBlack');">
+                <img id="blackSelect" class="spacer blueBorder" src="images/black.png" alt="wtf no render" style="width:50px;height:50px;"></a>
                 <input type="radio" value="blueSelect" name="colorRadio" id="colorBlue" class="hidden" checked="checked"/>
-                <a href="javascript:set_radio('colorBlue');">
-                <img id="blueSelect" class="spacer blueBorder" src="images/blue.png" alt="wtf no render" style="width:50px;height:50px;"></a>
+                <a href="javascript:set_color('colorBlue');">
+                <img id="blueSelect" class="spacer" src="images/blue.png" alt="wtf no render" style="width:50px;height:50px;"></a>
                 <input type="radio" value="redSelect" name="colorRadio" id="colorRed" class="hidden"/>
-                <a class="spacer" href="javascript:set_radio('colorRed');">
+                <a class="spacer" href="javascript:set_color('colorRed');">
                 <img id="redSelect" class="spacer" src="images/red.png" alt="wtf no render" style="width:50px;height:50px;"/><a/>
             </div>
     	</div>

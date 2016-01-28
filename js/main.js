@@ -33,6 +33,8 @@ $(document).ready(function(){
 			//var y = e.pageY - this.offsetTop;
 			pen.drawing(canvas,ev);
 			pen.draw(context, ev);
+			getShape();
+			getColor();
 			//draw virknin
 
 			/*startx = currx;
@@ -69,9 +71,10 @@ $(document).ready(function(){
 });
 
 
-function set_radio($inputId){
+function set_color($inputId){
 	$("input#" + $inputId).click();
 	console.log($inputId);
+	document.getElementById("blackSelect").classList.remove('blueBorder');
 	document.getElementById("redSelect").classList.remove('blueBorder');
 	document.getElementById("blueSelect").classList.remove('blueBorder');
 	var selectedColor = $("input[type='radio'][name='colorRadio']:checked");
@@ -98,4 +101,58 @@ function undo () {
 
 function redo () {
 	console.log("redoing shit");
+}
+
+function getShape(){
+	var selectedVal = "";
+	var selected = $("input[type='radio'][name='toolRadio']:checked");
+	if(selected.length > 0){
+		selectedVal = selected.val();
+		if(selectedVal == "brushSelect"){
+			console.log(selectedVal);
+			//return a new brush()
+		}
+		else if(selectedVal == "circleSelect"){
+			console.log(selectedVal);
+			//return a new circle()
+		}
+		else if(selectedVal == "squareSelect"){
+			console.log(selectedVal);
+			//return a new square()
+		}
+		else if(selectedVal == "lineSelect"){
+			console.log(selectedVal);
+			//return a new lineobject()
+		}
+		else if(selectedVal == "textSelect"){
+			console.log(selectedVal);
+			//return a new textobject()
+		}
+	}
+	else{
+		//error computer says no
+	}
+}
+
+function getColor(){
+	var selectedVal = "";
+	var selected = $("input[type='radio'][name='colorRadio']:checked");
+	if(selected.length > 0){
+		selectedVal = selected.val();
+		if(selectedVal == "blackSelect"){
+			console.log(selectedVal);
+			//return a new color()
+		}
+		else if(selectedVal == "blueSelect"){
+			console.log(selectedVal);
+			//return a new color()
+		}
+		else if(selectedVal == "redSelect"){
+			console.log(selectedVal);
+			//return a new color()
+		}
+	}
+	else{
+		//error computer says no
+	}
 }
