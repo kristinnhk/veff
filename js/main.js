@@ -12,11 +12,15 @@ $(document).ready(function(){
 
 
 	$("#myCanvas").mousedown(function(e){
-		console.log("its alive");
+		//console.log("its alive");
 		isDrawing = true;
 		startx = e.pageX - this.offsetLeft;
 		starty = e.pageY - this.offsetTop;
-		var pen = new Pen(startx, starty);
+		currx = startx;
+		curry = starty;
+
+		getColor();
+		var shape = getShape(startx, starty);
 		//pen.draw(context);
 
 		/*startx = currx;
@@ -25,16 +29,14 @@ $(document).ready(function(){
         curry = e.pageY - canvas.offsetTop;*/
 
 
-        console.log("X:" + startx + " , Y: " + starty);
+        //console.log("X:" + startx + " , Y: " + starty);
 
         $("#myCanvas").mousemove(function(ev){
         	if(isDrawing === true){
 			//var x = e.pageX - this.offsetLeft;
 			//var y = e.pageY - this.offsetTop;
-			pen.drawing(canvas,ev);
-			pen.draw(context, ev);
-			getShape();
-			getColor();
+			shape.drawing(canvas,ev);
+			shape.draw(context, ev);
 			//draw virknin
 
 			/*startx = currx;
@@ -73,7 +75,7 @@ $(document).ready(function(){
 
 function set_color($inputId){
 	$("input#" + $inputId).click();
-	console.log($inputId);
+	//console.log($inputId);
 	document.getElementById("blackSelect").classList.remove('blueBorder');
 	document.getElementById("redSelect").classList.remove('blueBorder');
 	document.getElementById("blueSelect").classList.remove('blueBorder');
@@ -84,7 +86,7 @@ function set_color($inputId){
 
 function set_tool($inputId){
 	$("input#" + $inputId).click();
-	console.log($inputId);
+	//console.log($inputId);
 	document.getElementById("brushSelect").classList.remove('blueBorder');
 	document.getElementById("circleSelect").classList.remove('blueBorder');
 	document.getElementById("squareSelect").classList.remove('blueBorder');
@@ -103,14 +105,14 @@ function redo () {
 	console.log("redoing shit");
 }
 
-function getShape(){
+function getShape(x, y){
 	var selectedVal = "";
 	var selected = $("input[type='radio'][name='toolRadio']:checked");
 	if(selected.length > 0){
 		selectedVal = selected.val();
 		if(selectedVal == "brushSelect"){
-			console.log(selectedVal);
-			//return a new brush()
+			//console.log(selectedVal);
+			return new Pen(x, y);
 		}
 		else if(selectedVal == "circleSelect"){
 			console.log(selectedVal);
@@ -144,7 +146,7 @@ function getColor(){
 			//return a new color()
 		}
 		else if(selectedVal == "blueSelect"){
-			console.log(selectedVal);
+			//console.log(selectedVal);
 			//return a new color()
 		}
 		else if(selectedVal == "redSelect"){
@@ -154,5 +156,12 @@ function getColor(){
 	}
 	else{
 		//error computer says no
+	}
+
+	function redraw () {
+		context.clearRect(0,0,550,550);
+		for(var i = 0; i < drawings.length; i++){
+			drawings[i].draw();
+		}
 	}
 }
