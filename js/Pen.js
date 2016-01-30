@@ -14,7 +14,7 @@ var Pen = Shape.extend({
 		//console.log("START\nX:" + this.startx + " , Y: " + this.starty + "\nCURR\nX: " + this.currx + " , Y: " + this.curry);
 		for (var i = 0; i < this.points.length; i++) {
 		    context.moveTo(this.startx, this.starty);
-		    console.log("line from " + this.startx + " " + this.starty + " to " + this.currx + " " + this.curry);
+		    //console.log("line from " + this.startx + " " + this.starty + " to " + this.currx + " " + this.curry);
 		    context.lineTo(this.currx, this.curry);
 		    context.strokeStyle = "black";
 		    context.lineWidth = 2;
@@ -29,7 +29,7 @@ var Pen = Shape.extend({
         this.currx = e.pageX - canvas.offsetLeft;
         this.curry = e.pageY - canvas.offsetTop;
         this.points.push({x: this.currx, y: this.curry});
-        console.log("X:" + this.startx + " , Y: " + this.starty);
+        //console.log("X:" + this.startx + " , Y: " + this.starty);
 	}
 
 });

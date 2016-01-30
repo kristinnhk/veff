@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var isDrawing = false;
 	var drawings = [];
 	var undo = [];
+	var shape;
 
 
 	$("#myCanvas").mousedown(function(e){
@@ -20,7 +21,7 @@ $(document).ready(function(){
 		curry = starty;
 
 		getColor();
-		var shape = getShape(startx, starty);
+		shape = getShape(startx, starty);
 		//pen.draw(context);
 
 		/*startx = currx;
@@ -115,12 +116,12 @@ function getShape(x, y){
 			return new Pen(x, y);
 		}
 		else if(selectedVal == "circleSelect"){
-			console.log(selectedVal);
+			//console.log(selectedVal);
 			//return a new circle()
 		}
 		else if(selectedVal == "squareSelect"){
 			console.log(selectedVal);
-			//return a new square()
+			return new Square();
 		}
 		else if(selectedVal == "lineSelect"){
 			console.log(selectedVal);
