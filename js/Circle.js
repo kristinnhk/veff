@@ -19,7 +19,7 @@ var Circle = Shape.extend ({
 	drawing: function(canvas, e){
 		this.currx = e.pageX - canvas.offsetLeft;
         this.curry = e.pageY - canvas.offsetTop;
-        this.radius = (this.currx - this.startx)/2;
+        this.radius = ((this.currx - this.startx) + (this.curry - this.starty))/2;
         if(this.radius < 0){
         	this.radius *= -1;
         }
