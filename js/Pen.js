@@ -12,7 +12,7 @@ var Pen = Shape.extend({
 		//console.log(this.startx + " " + this.starty + " " + this.currx + " " + this.curry);
 	},
 
-	draw: function(context, ev) {
+	draw: function(context) {
 		//console.log("START\nX:" + this.startx + " , Y: " + this.starty + "\nCURR\nX: " + this.currx + " , Y: " + this.curry);
 		context.strokeStyle = this.color;
 		context.lineWidth = 2;

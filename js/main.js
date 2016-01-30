@@ -7,9 +7,8 @@ $(document).ready(function(){
 	var currx = 0;
 	var curry = 0;
 	var isDrawing = false;
-	var pens = [];
 	var drawings = [];
-	var undo = [];
+	var undoneShapes = [];
 	var shape;
 
 
@@ -54,48 +53,63 @@ $(document).ready(function(){
 		});
 		
 	});
-function getShape(x, y){
-	var selectedVal = "";
-	var selected = $("input[type='radio'][name='toolRadio']:checked");
-	if(selected.length > 0){
-		selectedVal = selected.val();
-		if(selectedVal == "brushSelect"){
-			//console.log(selectedVal);
-			//var temp = new Pen(x, y)
-			//pens.push(temp);
-			return new Pen(x, y);
-		}
-		else if(selectedVal == "circleSelect"){
-			//console.log(selectedVal);
-			//return a new circle()
-		}
-		else if(selectedVal == "squareSelect"){
-			console.log(selectedVal);
-			return new Square();
-		}
-		else if(selectedVal == "lineSelect"){
-			console.log(selectedVal);
-			//return a new lineobject()
-		}
-		else if(selectedVal == "textSelect"){
-			console.log(selectedVal);
-			//return a new textobject()
+	function getShape(x, y){
+		var selectedVal = "";
+		var selected = $("input[type='radio'][name='toolRadio']:checked");
+		if(selected.length > 0){
+			selectedVal = selected.val();
+			if(selectedVal == "brushSelect"){
+				//console.log(selectedVal);
+				//var temp = new Pen(x, y)
+				//pens.push(temp);
+				return new Pen(x, y);
+			}
+			else if(selectedVal == "circleSelect"){
+				//console.log(selectedVal);
+				//return a new circle()
+				return new Pen(x, y);
+			}
+			else if(selectedVal == "squareSelect"){
+				console.log(selectedVal);
+				return new Square();
+			}
+			else if(selectedVal == "lineSelect"){
+				console.log(selectedVal);
+				//return a new lineobject()
+			}
+			else if(selectedVal == "textSelect"){
+				console.log(selectedVal);
+				//return a new textobject()
+			}
+			else{
+				return new Pen(x,y);
+			}
 		}
 		else{
 			return new Pen(x,y);
+			//error computer says no
 		}
 	}
-	else{
-		return new Pen(x,y);
-		//error computer says no
+	function redraw(){
+		context.clearRect(0,0,550,550);
+		for(var i = 0; i < drawings.length; i++){
+			drawings[i].draw(context);
+		}		//other arrays
 	}
-}
-function redraw(context,e){
-	context.clearRect(0,0,550,550);
-	for(var i = 0; i < drawings.length; i++){
-		drawings[i].draw(context, e);
-	}		//other arrays
-}	
+	document.getElementById("undoSelect").onclick = function(){
+		if(drawings.length > 0){
+			undoneShapes.push(drawings.pop());
+			redraw();
+		}
+		console.log("undoing shit");
+	}
+	document.getElementById("redoSelect").onclick = function(){
+		if(undoneShapes.length > 0){
+			drawings.push(undoneShapes.pop());
+			redraw();
+		}
+		console.log("undoing shit");
+	}
 
 });
 
@@ -124,11 +138,6 @@ function set_tool($inputId){
 	console.log(selectedTool.val());
 	document.getElementById(selectedTool.val()).classList.add('blueBorder');
 }
-
-function undo () {
-	console.log("undoing shit");
-}
-
 function redo () {
 	console.log("redoing shit");
 }
