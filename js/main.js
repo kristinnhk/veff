@@ -67,7 +67,7 @@ $(document).ready(function(){
 			else if(selectedVal == "circleSelect"){
 				//console.log(selectedVal);
 				//return a new circle()
-				return new Pen(x, y);
+				return new Circle(x, y);
 			}
 			else if(selectedVal == "squareSelect"){
 				console.log(selectedVal);
