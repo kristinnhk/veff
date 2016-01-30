@@ -72,7 +72,7 @@ $(document).ready(function(){
 			else if(selectedVal == "circleSelect"){
 				//console.log(selectedVal);
 				//return a new circle()
-				return new Pen(x, y);
+				return new Circle(x, y);
 			}
 			else if(selectedVal == "squareSelect"){
 				console.log(selectedVal);
@@ -80,7 +80,7 @@ $(document).ready(function(){
 			}
 			else if(selectedVal == "lineSelect"){
 				console.log(selectedVal);
-				//return a new lineobject()
+				return new Line(x, y);
 			}
 			else if(selectedVal == "textSelect"){
 				console.log(selectedVal);
