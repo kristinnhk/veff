@@ -49,6 +49,9 @@ $(document).ready(function(){
 		$("#myCanvas").mouseup(function(e){
 			isDrawing = false;
 		});
+		$('#myCanvas').mouseleave(function(e){
+		  isDrawing = false;
+		});
 		
 	});
 function getShape(x, y){
