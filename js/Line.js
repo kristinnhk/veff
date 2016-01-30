@@ -6,10 +6,12 @@ var Line = Shape.extend ({
 		this.currx = x;
 		this.curry = y;
 		this.color = getColor();
+		this.lineWidth = getLineWidth();
 	},
 
 	draw: function(context){
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineWidth;
 		context.beginPath();
 	    context.moveTo(this.startx, this.starty);
 	    context.lineTo(this.currx, this.curry);
