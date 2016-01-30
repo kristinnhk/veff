@@ -8,19 +8,24 @@ var Pen = Shape.extend({
 		this.curry = y;
 		this.color = getColor();
 		this.points = [{x: x, y: y}];
+		this.xCords = [];
+		this.yCords = [];
 		console.log(this.startx + " " + this.starty + " " + this.currx + " " + this.curry);
 	},
 
 	draw: function(context, ev) {
 		//console.log("START\nX:" + this.startx + " , Y: " + this.starty + "\nCURR\nX: " + this.currx + " , Y: " + this.curry);
-		for (var i = 0; i < this.points.length; i++) {
-		    context.moveTo(this.startx, this.starty);
-		    //console.log("line from " + this.startx + " " + this.starty + " to " + this.currx + " " + this.curry);
-		    context.lineTo(this.currx, this.curry);
-		    context.strokeStyle = this.color;
-		    context.lineWidth = 2;
-		    context.stroke();
+		context.strokeStyle = this.color;
+		context.lineWidth = 2;
+		for (var i = 0; i < this.xCords.length; i++) {
+			context.beginPath();
+
+		    //context.moveTo(this.startx, this.starty);
+		    context.moveTo(this.xCords[i-1], this.yCords[i-1]);
+		    console.log("line from " + this.xCords[i-1] + " " + this.yCords[i-1] + " to " + this.xCords[i] + " " + this.yCords[i]);
+		    context.lineTo(this.xCords[i], this.yCords[i]);
 		    context.closePath();
+		    context.stroke();
 		}		
 	},
 
@@ -30,7 +35,9 @@ var Pen = Shape.extend({
         this.currx = e.pageX - canvas.offsetLeft;
         this.curry = e.pageY - canvas.offsetTop;
         this.points.push({x: this.currx, y: this.curry});
-        //console.log("X:" + this.startx + " , Y: " + this.starty);
+        this.xCords.push(this.currx);
+        this.yCords.push(this.curry);
+        console.log("X:" + this.startx + " , Y: " + this.starty);
 	}
 
 });

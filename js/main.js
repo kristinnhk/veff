@@ -7,6 +7,7 @@ $(document).ready(function(){
 	var currx = 0;
 	var curry = 0;
 	var isDrawing = false;
+	var pens = [];
 	var drawings = [];
 	var undo = [];
 	var shape;
@@ -19,16 +20,14 @@ $(document).ready(function(){
 		starty = e.pageY - this.offsetTop;
 		currx = startx;
 		curry = starty;
-
-		getColor();
+		//getColor();
 		shape = getShape(startx, starty);
+		//test
+		drawings.push(shape);
+		//drawings.push(shape);
+		redraw(context,e);
+		//test
 		//pen.draw(context);
-
-		/*startx = currx;
-        starty = curry;
-        currx = e.pageX - canvas.offsetLeft;
-        curry = e.pageY - canvas.offsetTop;*/
-
 
         //console.log("X:" + startx + " , Y: " + starty);
 
@@ -36,29 +35,13 @@ $(document).ready(function(){
         	if(isDrawing === true){
 			//var x = e.pageX - this.offsetLeft;
 			//var y = e.pageY - this.offsetTop;
-			shape.drawing(canvas,ev);
-			shape.draw(context, ev);
+				//if(typeof shape === Pen){
+					drawings[drawings.length-1].drawing(canvas,ev);
+					redraw(context,ev);
+				//}
+				//shape.draw(context, ev);
 			//draw virknin
 
-			/*startx = currx;
-            starty = curry;
-            currx = e.pageX - canvas.offsetLeft;
-        	curry = e.pageY - canvas.offsetTop;
-            
-            context.beginPath();
-		    context.moveTo(startx, starty);
-		    context.lineTo(currx, curry);
-		    context.strokeStyle = "black";
-		    context.lineWidth = 2;
-		    context.stroke();
-		    context.closePath();*/
-
-			/*lineTo virknin
-			context.clearRect(0,0,550,550);
-			context.beginPath();
-			context.moveTo(startx,starty);
-			context.lineTo(x,y);
-			context.stroke();*/
 
 			}
 		});
@@ -66,12 +49,53 @@ $(document).ready(function(){
 		$("#myCanvas").mouseup(function(e){
 			isDrawing = false;
 		});
-
-
-    });
-
+		
+	});
+function getShape(x, y){
+	var selectedVal = "";
+	var selected = $("input[type='radio'][name='toolRadio']:checked");
+	if(selected.length > 0){
+		selectedVal = selected.val();
+		if(selectedVal == "brushSelect"){
+			//console.log(selectedVal);
+			//var temp = new Pen(x, y)
+			//pens.push(temp);
+			return new Pen(x, y);
+		}
+		else if(selectedVal == "circleSelect"){
+			//console.log(selectedVal);
+			//return a new circle()
+		}
+		else if(selectedVal == "squareSelect"){
+			console.log(selectedVal);
+			return new Square();
+		}
+		else if(selectedVal == "lineSelect"){
+			console.log(selectedVal);
+			//return a new lineobject()
+		}
+		else if(selectedVal == "textSelect"){
+			console.log(selectedVal);
+			//return a new textobject()
+		}
+		else{
+			return new Pen(x,y);
+		}
+	}
+	else{
+		return new Pen(x,y);
+		//error computer says no
+	}
+}
+function redraw(context,e){
+	context.clearRect(0,0,550,550);
+	for(var i = 0; i < drawings.length; i++){
+		drawings[i].draw(context, e);
+	}		//other arrays
+}	
 
 });
+
 
 
 function set_color($inputId){
@@ -106,36 +130,6 @@ function redo () {
 	console.log("redoing shit");
 }
 
-function getShape(x, y){
-	var selectedVal = "";
-	var selected = $("input[type='radio'][name='toolRadio']:checked");
-	if(selected.length > 0){
-		selectedVal = selected.val();
-		if(selectedVal == "brushSelect"){
-			//console.log(selectedVal);
-			return new Pen(x, y);
-		}
-		else if(selectedVal == "circleSelect"){
-			//console.log(selectedVal);
-			//return a new circle()
-		}
-		else if(selectedVal == "squareSelect"){
-			console.log(selectedVal);
-			return new Square();
-		}
-		else if(selectedVal == "lineSelect"){
-			console.log(selectedVal);
-			//return a new lineobject()
-		}
-		else if(selectedVal == "textSelect"){
-			console.log(selectedVal);
-			//return a new textobject()
-		}
-	}
-	else{
-		//error computer says no
-	}
-}
 
 function getColor(){
 	var selectedVal = "";
@@ -165,10 +159,4 @@ function getColor(){
 		//error computer says no
 	}
 
-	function redraw () {
-		context.clearRect(0,0,550,550);
-		for(var i = 0; i < drawings.length; i++){
-			drawings[i].draw();
-		}
-	}
 }
