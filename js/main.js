@@ -71,7 +71,7 @@ $(document).ready(function(){
 			}
 			else if(selectedVal == "squareSelect"){
 				console.log(selectedVal);
-				return new Square();
+				return new Square(x, y);
 			}
 			else if(selectedVal == "lineSelect"){
 				console.log(selectedVal);
