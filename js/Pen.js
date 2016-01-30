@@ -7,6 +7,7 @@ var Pen = Shape.extend({
 		this.currx = x;
 		this.curry = y;
 		this.color = getColor();
+		this.lineWidth = getLineWidth();
 		this.xCords = [];
 		this.yCords = [];
 		//console.log(this.startx + " " + this.starty + " " + this.currx + " " + this.curry);
@@ -15,7 +16,7 @@ var Pen = Shape.extend({
 	draw: function(context) {
 		//console.log("START\nX:" + this.startx + " , Y: " + this.starty + "\nCURR\nX: " + this.currx + " , Y: " + this.curry);
 		context.strokeStyle = this.color;
-		context.lineWidth = 2;
+		context.lineWidth = this.lineWidth;
 		for (var i = 0; i < this.xCords.length; i++) {
 			context.beginPath();
 		    //context.moveTo(this.startx, this.starty);
