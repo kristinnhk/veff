@@ -53,6 +53,11 @@ $(document).ready(function(){
 		});
 		
 	});
+	function getLineWidth(){
+		var selectionBox = document.getElementById("lineWidth");
+		var width = selectionBox.options[selectionBox.selectedIndex].value;
+		console.log("selected value is " + width)
+	}
 	function getShape(x, y){
 		var selectedVal = "";
 		var selected = $("input[type='radio'][name='toolRadio']:checked");
@@ -171,4 +176,10 @@ function getColor(){
 		//error computer says no
 	}
 
+}
+
+function getLineWidth(){
+	var selectionBox = document.getElementById("lineWidth");
+	var width = selectionBox.options[selectionBox.selectedIndex].value;
+	return width;
 }
