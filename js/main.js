@@ -144,15 +144,21 @@ function getColor(){
 		selectedVal = selected.val();
 		if(selectedVal == "blackSelect"){
 			console.log(selectedVal);
+			return "black";
 			//return a new color()
 		}
 		else if(selectedVal == "blueSelect"){
 			//console.log(selectedVal);
 			//return a new color()
+			return "blue";
 		}
 		else if(selectedVal == "redSelect"){
 			console.log(selectedVal);
 			//return a new color()
+			return "red";
+		}
+		else{
+			return "black";
 		}
 	}
 	else{

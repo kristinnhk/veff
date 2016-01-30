@@ -6,6 +6,7 @@ var Pen = Shape.extend({
 		this.starty = y;
 		this.currx = x;
 		this.curry = y;
+		this.color = getColor();
 		this.points = [{x: x, y: y}];
 		console.log(this.startx + " " + this.starty + " " + this.currx + " " + this.curry);
 	},
@@ -16,7 +17,7 @@ var Pen = Shape.extend({
 		    context.moveTo(this.startx, this.starty);
 		    //console.log("line from " + this.startx + " " + this.starty + " to " + this.currx + " " + this.curry);
 		    context.lineTo(this.currx, this.curry);
-		    context.strokeStyle = "black";
+		    context.strokeStyle = this.color;
 		    context.lineWidth = 2;
 		    context.stroke();
 		    context.closePath();
