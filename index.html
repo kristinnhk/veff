@@ -38,19 +38,7 @@
                 <img id="undoSelect" class="spacer" src="images/undo.png" alt="wtf no render" style="width:50px;height:50px;"/></a>
                 <a href="javaScript:void(0);">
                 <img id="redoSelect" class="spacer" src="images/redo.png" alt="wtf no render" style="width:50px;height:50px;"/></a>
-            </div>
-            <div id="colorSelect">
-                <input type="radio" value="blackSelect" name="colorRadio" id="colorBlack" class="hidden" checked="checked"/>
-                <a href="javascript:set_color('colorBlack');">
-                <img id="blackSelect" class="spacer blueBorder" src="images/black.png" alt="wtf no render" style="width:50px;height:50px;"></a>
-                <input type="radio" value="blueSelect" name="colorRadio" id="colorBlue" class="hidden" />
-                <a href="javascript:set_color('colorBlue');">
-                <img id="blueSelect" class="spacer" src="images/blue.png" alt="wtf no render" style="width:50px;height:50px;"></a>
-                <input type="radio" value="redSelect" name="colorRadio" id="colorRed" class="hidden"/>
-                <a class="spacer" href="javascript:set_color('colorRed');">
-                <img id="redSelect" class="spacer" src="images/red.png" alt="wtf no render" style="width:50px;height:50px;"/></a>
-                <div>
-                    <p>Line Width</p>
+                <p>Line Width</p>
                     <select name="width" id="lineWidth">
                         <option value="1">1 px</option>
                         <option value="2" selected>2 px</option>
@@ -63,7 +51,43 @@
                         <option value="9">9 px</option>
                         <option value="10">10 px</option>
                         
-                    </select>  
+                    </select> 
+            </div>
+            <div id="colorSelect">
+                <input type="radio" value="blackSelect" name="colorRadio" id="colorBlack" class="hidden" checked="checked"/>
+                <a href="javascript:set_color('colorBlack');">
+                <img id="blackSelect" class="spacer blueBorder" src="images/black.png" alt="wtf no render" style="width:50px;height:50px;"></a>
+                <input type="radio" value="blueSelect" name="colorRadio" id="colorBlue" class="hidden" />
+                <a href="javascript:set_color('colorBlue');">
+                <img id="blueSelect" class="spacer" src="images/blue.png" alt="wtf no render" style="width:50px;height:50px;"></a>
+                <input type="radio" value="redSelect" name="colorRadio" id="colorRed" class="hidden"/>
+                <a class="spacer" href="javascript:set_color('colorRed');">
+                <img id="redSelect" class="spacer" src="images/red.png" alt="wtf no render" style="width:50px;height:50px;"/></a>
+                <div>
+                    
+                    <button type="button" class="buttons" id="clearButton">Clear your Art!</button>
+                    <a href="#openModal"><button type="button" class="buttons" id="saveOrLoadButton">Save/Load</button></a>
+                    <div id="openModal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <h2>Your drawings:</h2>
+                            <div id="loadDrawingWrapper">
+                                <ol id="drawingsList" type="1">
+                                </ol>
+                                <button type="button" class="buttons" id="openButton">open currently selected drawing</button>
+                            </div>
+                            <div id="saveDrawingWrapper">
+                                <input type="text" id="artSaveID" name="artName" placeholder="Name your Art!"/>
+                                <button type="button" class="buttons" id="SaveButton">Save your current drawing!</button>
+                            </div>
+                         
+
+                        </div>
+                        
+                    </div>
+                   <!--<button type="button" class="buttons" id="saveButton">Save your Art!</button>
+                    <input type="text" id="artSaveID" name="artName" placeholder="Name your Art!"/>
+                    <button type="button" class="buttons" id="browseButton">Browse your Art!</button>-->
                 </div>
                 
             </div>

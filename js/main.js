@@ -83,7 +83,8 @@ $(document).ready(function(){
 				return new Line(x, y);
 			}
 			else if(selectedVal == "textSelect"){
-				console.log(selectedVal);
+				console.log(selectedVal+ " unfortunately we have not implemented this");
+				return new Pen(x, y);
 				//return a new textobject()
 			}
 			else{
@@ -94,6 +95,109 @@ $(document).ready(function(){
 			return new Pen(x,y);
 			//error computer says no
 		}
+	}
+	//	AAAAAAAAAAAAARRRRRRRRRRRGGGGGGGGGGGHHHHHHHHHHH ÞETTA VIRKAR EKKI
+	document.getElementById("openButton").onclick = function(){
+		drawings = [];
+		undoneShapes = [];
+		context.clearRect(0,0,550,550);
+		var temp = $("input[type='radio'][name='drawingRadio']:checked").val;
+		var drawingID = parseInt(temp);
+		var param = { "id": drawingID};
+
+			$.ajax({
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				url: "http://whiteboard.apphb.com/Home/GetWhiteboard",
+				data: param,
+				dataType: "jsonp",
+				crossDomain: true,
+				success: function (data) {
+					//var jsonData = JSON.parse(data);
+					//for (var i = 0; i < jsonData.counters.length; i++) {
+					//    var counter = jsonData.counters[i];
+					//    console.log(counter.counter_name);
+					//}
+					//redraw();
+					console.log("this shit doesnt work....");
+					// The save was successful...
+				},
+				error: function (xhr, err) {
+					// Something went wrong...
+				}
+			});
+	}
+	document.getElementById("saveOrLoadButton").onclick = function(){
+
+			var param = { "user": "kristinng14", // You should use your own username!
+				"template": false
+			};
+
+			$.ajax({
+				type: "GET",
+				contentType: "application/json; charset=utf-8",
+				url: "http://whiteboard.apphb.com/Home/GetList",
+				data: param,
+				dataType: "jsonp",
+				crossDomain: true,
+				success: function (data) {
+					$("#drawingsList").empty();
+					for(var i = 0; i < data.length; i++){
+						var par = data[i].ID;
+						if(i != 0){
+							$("#drawingsList").append("<li><input type=\"radio\" value=\""+ data[i].ID +"\" name=\"drawingRadio\"/>" + "  Name: " + data[i].WhiteboardTitle + "</li>");
+				
+						}
+						else{
+							$("#drawingsList").append("<li><input type=\"radio\" value=\""+ data[i].ID +"\" name=\"drawingRadio\" checked=\"checked\"/>" + "  Name: " + data[i].WhiteboardTitle + "</li>");
+						}
+						
+					}
+					console.log("winning with list data!");
+					// The save was successful...
+				},
+				error: function (xhr, err) {
+					// Something went wrong...
+				}
+			});
+	}
+	document.getElementById("clearButton").onclick = function(){
+		drawings = [];
+		undoneShapes = [];
+		context.clearRect(0,0,550,550);
+	}
+	document.getElementById("SaveButton").onclick = function(){
+		var artName = document.getElementById("artSaveID").value;
+		if (artName == ""){
+			//computer says no
+			console.log("computer says no");
+		}
+		else{
+			var stringifiedArray = JSON.stringify(drawings);
+			var param = { "user": "kristinng14",
+				"name": artName,
+				"content": stringifiedArray,
+				"template": false
+			};
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json; charset=utf-8",
+				url: "http://whiteboard.apphb.com/Home/Save",
+				data: param,
+				dataType: "jsonp",
+				crossDomain: true,
+				success: function (data) {
+					console.log("winning!");
+					// The save was successful...
+				},
+				error: function (xhr, err) {
+					// Something went wrong...
+				}
+			});
+			document.getElementById("artSaveID").value="";
+		}
+		
 	}
 	function redraw(){
 		context.clearRect(0,0,550,550);
@@ -113,7 +217,7 @@ $(document).ready(function(){
 			drawings.push(undoneShapes.pop());
 			redraw();
 		}
-		console.log("undoing shit");
+		console.log("redoing shit");
 	}
 
 });
